@@ -1,0 +1,368 @@
+---
+openapi: 3.0.3
+info:
+  title: code-bussiness API
+  version: 1.0.0-SNAPSHOT
+tags:
+- name: Eventos
+- name: Instituição
+servers:
+- url: http://localhost:8080
+  description: Local 
+- url: http://hospedagem.example.com
+  description: Produção
+paths:
+  /v1/evento:
+    get:
+      tags:
+      - Eventos
+      summary: Consulta paginada
+      description: descricao
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          format: int32
+          maximum: 1000
+          minimum: 10
+          type: integer
+        example: 20
+      - name: offset
+        in: query
+        required: true
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        example: 0
+      responses:
+        "200":
+          description: BUSCA Paginada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evento'
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    post:
+      tags:
+      - Eventos
+      summary: Criacao do evento
+      description: descricao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventoDto'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                format: uri
+                type: string
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+  /v1/evento/{id}:
+    get:
+      tags:
+      - Eventos
+      summary: Consulta pelo id
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          description: BUSCA PELO ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evento'
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    put:
+      tags:
+      - Eventos
+      summary: Alteracao do evento
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventoDto'
+      responses:
+        "200":
+          description: Updated
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    delete:
+      tags:
+      - Eventos
+      summary: Remocao do evento
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "204":
+          description: Delete
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+  /v1/instituicao:
+    get:
+      tags:
+      - Instituição
+      summary: Consulta paginada
+      description: descricao
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          format: int32
+          maximum: 1000
+          minimum: 10
+          type: integer
+        example: 20
+      - name: offset
+        in: query
+        required: true
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        example: 0
+      responses:
+        "200":
+          description: BUSCA Paginada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    post:
+      tags:
+      - Instituição
+      summary: Criacao do instituicao
+      description: descricao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstituicaoDto'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                format: uri
+                type: string
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+  /v1/instituicao/{id}:
+    get:
+      tags:
+      - Instituição
+      summary: Consulta pelo id
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          description: BUSCA PELO ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    put:
+      tags:
+      - Instituição
+      summary: Alteracao do instituicao
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstituicaoDto'
+      responses:
+        "200":
+          description: Updated
+        "400":
+          description: "A requisição foi malformada, omitindo atributos obrigatórios,\
+            \ seja no payload ou através de atributos na URL."
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+    delete:
+      tags:
+      - Instituição
+      summary: Remocao do instituicao
+      description: descricao
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "204":
+          description: Delete
+        "404":
+          description: O recurso solicitado não existe ou não foi encontrado
+        "500":
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+components:
+  schemas:
+    Date:
+      format: date
+      type: string
+      example: 2022-03-10
+    Evento:
+      type: object
+      properties:
+        idEvento:
+          format: int32
+          type: integer
+        nome:
+          type: string
+        dataInicial:
+          $ref: '#/components/schemas/Date'
+        dataFinal:
+          $ref: '#/components/schemas/Date'
+        ativo:
+          type: boolean
+        instituicao:
+          $ref: '#/components/schemas/Instituicao'
+    EventoDto:
+      required:
+      - nome
+      - dataInicial
+      - dataFinal
+      - instituicaoId
+      type: object
+      properties:
+        nome:
+          maxLength: 200
+          minLength: 10
+          pattern: \S
+          type: string
+          example: Confraternização da empresa
+        dataInicial:
+          maxLength: 10
+          minLength: 10
+          pattern: \S
+          type: string
+          example: 2024-04-01
+        dataFinal:
+          maxLength: 10
+          minLength: 10
+          pattern: \S
+          type: string
+          example: 2024-04-30
+        instituicaoId:
+          format: int32
+          type: integer
+          example: 1
+    Instituicao:
+      type: object
+      properties:
+        idInstituicao:
+          format: int32
+          type: integer
+        nome:
+          type: string
+        tipo:
+          $ref: '#/components/schemas/TipoInstituicao'
+    InstituicaoDto:
+      required:
+      - nome
+      - tipo
+      type: object
+      properties:
+        nome:
+          maxLength: 200
+          minLength: 10
+          pattern: \S
+          type: string
+          example: Nome da empresa
+        tipo:
+          pattern: \S
+          type: string
+          allOf:
+          - $ref: '#/components/schemas/TipoInstituicao'
+    TipoInstituicao:
+      enum:
+      - CONFEDERACAO
+      - SINGULAR
+      - CENTRAL
+      - COOPERATIVA
+      type: string
