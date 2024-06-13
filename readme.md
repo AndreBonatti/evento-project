@@ -21,3 +21,16 @@ Parando os projetos
 docker-compose stop
 ```
 
+
+Acessando o projeto em Angular
+```
+http://localhost:4200
+```
+Acessando o projeto em React
+```
+http://localhost:3000
+```
+Acessando quarkus backend
+```
+http://localhost:8080
+```
